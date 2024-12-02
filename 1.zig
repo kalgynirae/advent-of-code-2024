@@ -22,8 +22,8 @@ pub fn main() !void {
     std.mem.sortUnstable(u32, list2.items, {}, std.sort.asc(u32));
 
     var difference: u32 = 0;
-    for (0..list1.items.len) |i| {
-        difference += @truncate(@abs(@as(i33, list1.items[i]) - @as(i33, list2.items[i])));
+    for (list1.items, list2.items) |a, b| {
+        difference += @truncate(@abs(@as(i33, a) - @as(i33, b)));
     }
     try std.fmt.format(stdout, "Part 1 answer (difference): {}\n", .{difference});
 
